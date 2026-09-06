@@ -1,50 +1,58 @@
 {
-  "name": "@supabase/functions-js",
+  "name": "@supabase/realtime-js",
   "version": "2.95.3",
-  "description": "JS SDK to interact with Supabase Functions.",
-  "main": "dist/main/index.js",
-  "module": "dist/module/index.js",
-  "types": "dist/module/index.d.ts",
-  "sideEffects": false,
-  "scripts": {
-    "build": "npm run build:main && npm run build:module",
-    "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
-    "docs": "typedoc src/index.ts --out docs/v2",
-    "docs:json": "typedoc --json docs/v2/spec.json --excludeExternals src/index.ts",
-    "test": "jest",
-    "test:ci": "jest --coverage"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/supabase/supabase-js.git",
-    "directory": "packages/core/functions-js"
-  },
+  "description": "Listen to realtime updates to your PostgreSQL database",
   "keywords": [
-    "functions",
+    "realtime",
+    "phoenix",
+    "elixir",
+    "javascript",
+    "typescript",
+    "firebase",
     "supabase"
   ],
-  "author": "Supabase",
+  "homepage": "https://github.com/supabase/supabase-js/tree/master/packages/core/realtime-js",
+  "bugs": "https://github.com/supabase/supabase-js/issues",
   "files": [
     "dist",
     "src"
   ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/supabase/supabase-js/issues"
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "types": "dist/module/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supabase/supabase-js.git",
+    "directory": "packages/core/realtime-js"
   },
-  "homepage": "https://github.com/supabase/supabase-js/tree/master/packages/core/functions-js",
+  "author": "Supabase",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run build:main && npm run build:module",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage.enabled true --coverage.reporter=text",
+    "docs": "typedoc src/index.ts --out docs/v2",
+    "docs:json": "typedoc --json docs/v2/spec.json --excludeExternals src/index.ts",
+    "check-exports": "attw --pack .",
+    "test:ci": "vitest run --coverage"
+  },
   "dependencies": {
-    "tslib": "2.8.1"
+    "@types/phoenix": "^1.6.6",
+    "@types/ws": "^8.18.1",
+    "tslib": "2.8.1",
+    "ws": "^8.18.2"
   },
   "devDependencies": {
-    "bs-logger": "^0.2.6",
-    "nanoid": "^3.3.1",
-    "openai": "^4.52.5",
-    "testcontainers": "^8.5.1"
-  },
-  "publishConfig": {
-    "access": "public"
+    "@vitest/coverage-v8": "^3.1.4",
+    "esm": "^3.2.25",
+    "jsdom": "^16.7.0",
+    "jsdom-global": "3.0.0",
+    "mock-socket": "^9.3.1",
+    "nyc": "^15.1.0",
+    "web-worker": "1.2.0"
   },
   "engines": {
     "node": ">=20.0.0"
