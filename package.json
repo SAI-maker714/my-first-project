@@ -1,42 +1,50 @@
 {
-  "name": "@supabase/auth-js",
+  "name": "@supabase/functions-js",
   "version": "2.95.3",
-  "private": false,
-  "description": "Official SDK for Supabase Auth",
+  "description": "JS SDK to interact with Supabase Functions.",
+  "main": "dist/main/index.js",
+  "module": "dist/module/index.js",
+  "types": "dist/module/index.d.ts",
+  "sideEffects": false,
+  "scripts": {
+    "build": "npm run build:main && npm run build:module",
+    "build:main": "tsc -p tsconfig.json",
+    "build:module": "tsc -p tsconfig.module.json",
+    "docs": "typedoc src/index.ts --out docs/v2",
+    "docs:json": "typedoc --json docs/v2/spec.json --excludeExternals src/index.ts",
+    "test": "jest",
+    "test:ci": "jest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/supabase/supabase-js.git",
+    "directory": "packages/core/functions-js"
+  },
   "keywords": [
-    "auth",
-    "supabase",
-    "auth",
-    "authentication"
+    "functions",
+    "supabase"
   ],
-  "homepage": "https://github.com/supabase/supabase-js/tree/master/packages/core/auth-js",
-  "bugs": "https://github.com/supabase/supabase-js/issues",
-  "license": "MIT",
   "author": "Supabase",
   "files": [
     "dist",
     "src"
   ],
-  "main": "dist/main/index.js",
-  "module": "dist/module/index.js",
-  "types": "dist/module/index.d.ts",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/supabase/supabase-js.git",
-    "directory": "packages/core/auth-js"
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/supabase/supabase-js/issues"
   },
-  "scripts": {
-    "build": "npm run build:main && npm run build:module",
-    "build:main": "tsc -p tsconfig.json",
-    "build:module": "tsc -p tsconfig.module.json",
-    "docs": "typedoc src/index.ts --out docs/v2 --excludePrivate --excludeProtected",
-    "docs:json": "typedoc --json docs/v2/spec.json --excludeExternals --excludePrivate --excludeProtected src/index.ts"
-  },
+  "homepage": "https://github.com/supabase/supabase-js/tree/master/packages/core/functions-js",
   "dependencies": {
     "tslib": "2.8.1"
   },
   "devDependencies": {
-    "prettier": "^2.8.8"
+    "bs-logger": "^0.2.6",
+    "nanoid": "^3.3.1",
+    "openai": "^4.52.5",
+    "testcontainers": "^8.5.1"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "engines": {
     "node": ">=20.0.0"
